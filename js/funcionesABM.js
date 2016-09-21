@@ -30,6 +30,9 @@ function EditarCD(idParametro)
 		}
 	});
 	funcionAjax.done(function(retorno){
+
+		
+		
 		var cd =JSON.parse(retorno);	
 		$("#idCD").val(cd.id);
 		$("#cantante").val(cd.cantante);
@@ -39,7 +42,8 @@ function EditarCD(idParametro)
 	funcionAjax.fail(function(retorno){	
 		$("#informe").html(retorno.responseText);	
 	});	
-	Mostrar("MostrarFormAlta");
+	Mostrar("MostrarFormAlta");	
+
 }
 
 function GuardarCD()
@@ -61,7 +65,7 @@ function GuardarCD()
 		}
 	});
 	funcionAjax.done(function(retorno){
-			Mostrar("MostrarGrilla");
+		Mostrar("MostrarGrilla");
 		$("#informe").html("cantidad de agregados "+ retorno);	
 		
 	});

@@ -1,7 +1,7 @@
 
 function MostrarError()
 {
-	var funcionAjax=$.ajax({url:"nexoNoExiste.php",type:"post",data:{queHacer:"MostrarTexto"}});
+	/*var funcionAjax=$.ajax({url:"nexoNoExiste.php",type:"post",data:{queHacer:"MostrarTexto"}});
 	funcionAjax.done(function(retorno){
 		$("#principal").html(retorno);
 		$("#informe").html("Correcto!!!");
@@ -12,13 +12,24 @@ function MostrarError()
 	});
 	funcionAjax.always(function(retorno){
 		//alert("siempre "+retorno.statusText);
+	});*/
+
+	$.ajax({url:"nexoNoExiste.php"}).then(function(datosCorrectos){
+		alert("primero");
+
+	},function(error){
+		console.info("objecto respuesta", error);
+		alert("segundo"+error);
+		$("#informe").html(error.responseText);	
+
 	});
 }
+
 function MostrarSinParametros()
 {
 	var funcionAjax=$.ajax({url:"nexoTexto.php"});
 
-	funcionAjax.done(function(retorno){
+	/*funcionAjax.done(function(retorno){
 		$("#principal").html(retorno);
 		$("#informe").html("Correcto!!!");
 	});
@@ -29,13 +40,23 @@ function MostrarSinParametros()
 	funcionAjax.always(function(retorno){
 		//alert("siempre "+retorno.statusText);
 
+	});*/
+	$.ajax({url:"nexoTexto.php"})
+	.then(function ok(respuesta){
+		//alert(respuesta);
+		$("#principal").html(respuesta);
+	}, function mal(error){
+		alert(error);
+
 	});
+
+
 }
 
 function Mostrar(queMostrar)
 {
 		//alert(queMostrar);
-	var funcionAjax=$.ajax({
+	/*var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{queHacer:queMostrar}
@@ -51,7 +72,17 @@ function Mostrar(queMostrar)
 	funcionAjax.always(function(retorno){
 		//alert("siempre "+retorno.statusText);
 
+	});*/
+	
+	$.ajax({url:"nexo.php", type:"post", data:{queHacer:queMostrar}})
+	.then(function(exito){
+		
+		$("#principal").html(exito);
+	
+	},function(error){
+
 	});
+	
 }
 
 function MostarLogin()
